@@ -9,9 +9,32 @@ def min_depth_leaf(tree):
     
     Returns: (integer) the minimum depth of of a leaf in the tree.
     """
-
-    pass
-
+    # recursion:
+    '''
+    def det_all_leafs(tree, lvl=0):
+        leafs = []
+        if tree.children == []:
+            return lvl
+        else:
+            for branch in tree.children:
+                leafs.append(det_all_leafs(branch, lvl+1))
+        return min(leafs)
+    return det_all_leafs(tree)
+    '''
+    # BFS 
+    cue = [tree]
+    lvl = 0
+    while cue != []:
+        for branch in cue:
+            if branch.children == []:
+                return lvl
+        lvl += 1
+        new_cue = []
+        for branch in cue:
+            for child in branch.children:
+                new_cue.append(child)
+        cue = new_cue
+    
 
 #############################################################
 ###                                                       ###
