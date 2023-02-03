@@ -21,8 +21,8 @@ def min_depth_leaf(tree):
         return min(leafs)
     return det_all_leafs(tree)
     '''
-    '''
     # BFS 
+    '''
     cue = [tree]
     lvl = 0
     while cue != []:
@@ -36,9 +36,11 @@ def min_depth_leaf(tree):
                 new_cue.append(child)
         cue = new_cue
     '''
+    # Actual Method
     if tree.children == []:
         return 0
     return 1 + min([min_depth_leaf(x) for x in tree.children])
+    
     
 
 #############################################################
