@@ -57,7 +57,107 @@ class Node:
             return Node(self.value, self.left, self.right.insert(n))
         else:
             return self
+    
+    def inorder(self):
+        """
+        Returns list of all items in tree, ascending
+        """
+        lst = [self.value]
+        cue = [self.left, self.right]
+        while cue:
+            for node in cue:
+                lst.append(node.value)
+                cue.remove(node)
+                if not node.left.is_empty():
+                    cue.append(node.left)
+                if not node.right.is_empty():
+                    cue.append(node.right)
+        return sorted(lst)
 
+    def min_item(self):
+        if self.is_empty():
+            return None
+        lst = self.value
+        cue = [self.left]
+        while cue:
+            for node in cue:
+                if node.value < lst:
+                    lst = node.value
+                else:
+                    return lst
+                cue.remove(node)
+                if not node.left.is_empty():
+                    cue.append(node.left)
+        return lst
+
+    def max_item(self):
+        if self.is_empty():
+            return None
+        lst = self.value
+        cue = [self.right]
+        while cue:
+            for node in cue:
+                if node.value > lst:
+                    lst = node.value
+                else:
+                    return lst
+                cue.remove(node)
+                if not node.right.is_empty():
+                    cue.append(node.right)
+        return lst
+
+    def max_item2(self):
+        if self.right.is_empty():
+            return self.value
+        return self.right.max_item2()
+
+    def min_item2(self):
+        if self.left.is_empty():
+            return self.value
+        return self.left.min_item2()
+
+    def balance_factor(self):
+        return self.left.height() - self.right.height()
+
+    def balanced_everywhere(self):
+        cue = [self]
+        while cue:
+            for node in cue:
+                if not (-1 <= node.balance_factor() <= 1):
+                    return False
+                cue.remove(node)
+                if not node.left.is_empty():
+                    cue.append(node.left)
+                if not node.right.is_empty():
+                    cue.append(node.right)
+        return True
+
+    def add_to_all(self, val):
+        cue = [self]
+        while cue:
+            for node in cue:
+                node.value += val
+                cue.remove(node)
+                if not node.left.is_empty():
+                    cue.append(node.left)
+                if not node.right.is_empty():
+                    cue.append(node.right)
+        return self
+
+    def path_to_cue(self, val):
+        path = []
+        nex = self
+        while not nex.is_empty():
+            if val > nex.value:
+                path.append(nex.value)
+                nex = nex.right
+            elif val < nex.value:
+                path.append(nex.value)
+                nex = nex.left
+            else:
+                path.append(val)
+                return path
+        return None
 
 if __name__ == "__main__":
     bst = Empty().insert(42).insert(10).insert(15).insert(63)
