@@ -8,6 +8,7 @@ def compute_matching(x, y):
     Returns: Boolean-valued n-dimensional array with the same shape as 
              x and y
     """
+    return x == y
 
     # YOUR CODE HERE
     # Replace None with an appropriate return value

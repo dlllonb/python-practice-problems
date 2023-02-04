@@ -12,9 +12,16 @@ def clip_values(x, min_val=None, max_val=None):
              to (min_val, max-val)
     """
 
-    # YOUR CODE HERE
-    # Replace None with an appropriate return value
-    return None
+    or_shape = x.shape
+    new = x.flatten()
+    if max_val is not None:
+        for x in np.where(new > max_val)[0]:
+            new[x] = max_val
+    if min_val is not None:
+        for x in np.where(new < min_val)[0]:
+            new[x] = min_val
+    return new.reshape(or_shape)
+        
 
 
 #############################################################

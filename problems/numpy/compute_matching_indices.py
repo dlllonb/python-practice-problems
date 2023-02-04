@@ -8,10 +8,13 @@ def compute_matching_indices(x, y):
     Returns: a sorted array of the indices where x[i] == y[i]
     Note that the returned array must be one-dimensional! 
     """
+    match = (x == y).flatten()
+    lst = []
+    for i, x in enumerate(match):
+        if x:
+            lst.append(i)
+    return np.array(lst)
 
-    # YOUR CODE HERE
-    # Replace None with an appropriate return value
-    return None
     
 
 #############################################################
