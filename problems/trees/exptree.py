@@ -61,7 +61,56 @@ class Times:
         op2_str = str(self.op2)
 
         return f"({op1_str} * {op2_str})"
+    
+class Division:
+    def __init__(self, op1, op2):
+        self.op1 = op1
+        self.op2 = op2
 
+    def eval(self):
+        op1_val = self.op1.eval()
+        op2_val = self.op2.eval()
+
+        return op1_val / op2_val
+
+    def __str__(self):
+        op1_str = str(self.op1)
+        op2_str = str(self.op2)
+
+        return f"({op1_str} / {op2_str})"
+
+
+class Exponent:
+    def __init__(self, op1, op2):
+        self.op1 = op1
+        self.op2 = op2
+
+    def eval(self):
+        op1_val = self.op1.eval()
+        op2_val = self.op2.eval()
+
+        return op1_val ** op2_val
+
+    def __str__(self):
+        op1_str = str(self.op1)
+        op2_str = str(self.op2)
+
+        return f"({op1_str} ^ {op2_str})"
+
+
+class Abs:
+    def __init__(self, op1):
+        self.op1 = op1
+
+    def eval(self):
+        if self.op1.eval() >= 0:
+            return self.op1
+        else:
+            return self.op1.eval() * -1
+
+    def __str__(self):
+        return f"(|{str(self.op1)}|)"
+    
 
 if __name__ == "__main__":
 
